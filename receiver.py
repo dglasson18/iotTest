@@ -80,8 +80,11 @@ try:
     flag = 0
     while flag==0:
         ser = serial.Serial('/dev/ttyACM0', 9600) #define serial port for communication with arduino
+        print("Serial set up")
         curData = ser.readline() #reads data till /n from arduino (Serial.println(data))
+        print("data read")
         decoded = curData.decode() #changes data type from bytes to string, easier for me to manipulate
+        print("data decoded, ready to be processed")
         processSerial(decoded) #call process serial function and pass the decoded data from arduino as argument
 except KeyboardInterrupt:
     print("    Quit")
