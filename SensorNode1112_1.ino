@@ -1,16 +1,3 @@
-/*
-  # Example code for the moisture sensor
-  # Editor     : Lauren
-  # Date       : 13.01.2012
-  # Version    : 1.0
-  # Connect the sensor to the A0(Analog 0) pin on the Arduino board
-
-  # the sensor value description
-  # 0  ~300     dry soil
-  # 300~700     humid soil
-  # 700~950     in water
-*/
-
 #include <SPI.h>
 #include <RH_RF95.h> 
 
@@ -116,7 +103,7 @@ void loop(){
       if (rf95.recv(buf, &len)) {
         Serial.print("Got reply that reads");
         Serial.print((char*)buf);
-        if (buf[0] == toSend[0] && buf[1] == toSend[1] && buf[2] == toSend[2] && buf[3] == toSend[3] && buf[4] == toSend[4] && buf[5] == toSend[5] && buf[6] == toSend[6] && buf[7] == toSend[7]){//(buf[0] == (byte)'M' && buf[1] == (byte)devNum1 && buf[2] == (byte)devNum2 && buf[3] == (byte)oldSensorState){
+        if (buf[0] == 'r' && buf[1] == toSend[1] && buf[2] == toSend[2] && buf[3] == toSend[3] && buf[4] == toSend[4] && buf[5] == toSend[5] && buf[6] == toSend[6] && buf[7] == toSend[7]){//(buf[0] == (byte)'M' && buf[1] == (byte)devNum1 && buf[2] == (byte)devNum2 && buf[3] == (byte)oldSensorState){
           Serial.println("Acknowledged");
           Serial.println((char*)buf);
           newSensorState = 0;
