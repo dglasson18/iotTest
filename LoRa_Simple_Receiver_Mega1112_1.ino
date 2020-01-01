@@ -64,9 +64,9 @@ void loop()
       //Serial.print("Message reads: ");
       //Serial.println((char*)buf);
       if (buf[0] == senSent){
-        //Serial.print("Match to device 1 with message:");
+        //Data received from a device, buf[0] == 1 identifies that data is related to a sensor
         Serial.println((char*)buf);
-        //Serial.println("Sending Message:");
+        buf[0] = 'r' //buf[0]replaced with r to indicate message has been received by a receiver rather than another sensor
         rf95.send(buf, sizeof(buf));
         rf95.waitPacketSent();
       }//this else can be removed to return it back to what it was earlier
